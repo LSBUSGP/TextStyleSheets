@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ApplyStyle : MonoBehaviour
 {
     public TMP_Text text;
@@ -11,9 +12,18 @@ public class ApplyStyle : MonoBehaviour
         text = GetComponent<TMP_Text>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        style.onUpdateStyle += UpdateStyle;
+        if (style != null)
+        {
+            style.Subscribe(UpdateStyle);
+        }
+        UpdateStyle();
+    }
+
+    void OnDisable()
+    {
+        style.Unsubscribe(UpdateStyle);
     }
 
     void UpdateStyle()

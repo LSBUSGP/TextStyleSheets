@@ -15,8 +15,50 @@ public class TextStyle : ScriptableObject
     }
 
     [SerializeField] private OverrideType overrideSize;
-    public float size { get { return _size; } set { _size = value; onUpdateStyle.Invoke(); } }
-    [SerializeField] float _size;
+    [SerializeField] private float size;
+
+    void OnValidate()
+    {
+        UpdateStyle();
+    }
+
+    void UpdateStyle()
+    {
+        if (onUpdateStyle != null)
+        {
+            onUpdateStyle.Invoke();
+        }
+    }
+
+    public void OverrideSize(float size, OverrideType type)
+    {
+        this.overrideSize = type;
+        this.size = size;
+        UpdateStyle();
+    }
+
+    public void SetFontSize(float size)
+    {
+        switch (Mathf.RoundToInt(size))
+        {
+            case 0:
+                size = 32;
+                break;
+            case 1:
+                size = 34;
+                break;
+            case 2:
+                size = 38;
+                break;
+            case 3:
+                size = 44;
+                break;
+            case 4:
+                size = 52;
+                break;
+        }
+        OverrideSize(size, OverrideType.Replace);
+    }
 
     public float GetSize()
     {
@@ -46,7 +88,25 @@ public class TextStyle : ScriptableObject
         return size;
     }
 
+    public void Subscribe(OnUpdateStyle update)
+    {
+        if (basedOn != null)
+        {
+            basedOn.Subscribe(update);
+        }
+        onUpdateStyle += update;
+    }
+
+    public void Unsubscribe(OnUpdateStyle update)
+    {
+        if (basedOn != null)
+        {
+            basedOn.Unsubscribe(update);
+        }
+        onUpdateStyle -= update;
+    }
+
     public delegate void OnUpdateStyle();
 
-    public event OnUpdateStyle onUpdateStyle;
+    event OnUpdateStyle onUpdateStyle;
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basedOn: {fileID: 0}
   overrideSize: 1
-  _size: 36.7
+  size: 32

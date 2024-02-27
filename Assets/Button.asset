@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7869cb003f527646885047a34665660, type: 3}
-  m_Name: Header
+  m_Name: Button
   m_EditorClassIdentifier: 
   basedOn: {fileID: 11400000, guid: b178a93a7d62cbc44a9b74ad0d9bbfba, type: 2}
-  overrideSize: 3
-  size: 4.73
+  overrideSize: 0
+  size: 0
