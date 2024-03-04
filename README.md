@@ -15,7 +15,10 @@ The default style sheet is stored in a file called `Default Style Sheet.asset` i
 
 ### Default Font Size
 
-The `Default Font Size` entry in the TMP Settings sets the font size on a Text Mesh Pro object when it is first created. However, if you change the default font size in the TMP Settings after you have already created a Text Mesh Pro object, the font size on the object will not change. This is because the font size on the object is set to a specific value and is not linked to the default font size in the TMP Settings.
+The `Default Font Size` entry in the TMP Settings sets the font size on a Text Mesh Pro object when it is first created.
+![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/42de92c2-6d17-4e1d-beaf-de334814deb6)
+
+However, if you change the default font size in the TMP Settings after you have already created a Text Mesh Pro object, the font size on the object will not change. This is because the font size on the object is set to a specific value and is not linked to the default font size in the TMP Settings.
 
 If you create a new script `SetDefaultFontSize.cs`:
 
