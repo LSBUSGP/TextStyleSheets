@@ -63,6 +63,7 @@ Also, by default, each `TextMesh Pro` object will use the `Default Style Sheet` 
 By making your own style sheet and assigning it here, you can control the style of every `TextMesh Pro` text object in your project.
 
 But, each `TextMesh Pro` text object also has its own setting for the style sheet to use. By default, the entry will be blank when the `TextMesh Pro` text objects are created. You can see the setting by click on the `Extra Settings` button in the `Inspector` view for the `TextMesh Pro` text object:
+
 ![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/09afdd82-5fa5-4936-bb74-7b3c94cf130f)
 
 If you assign a style sheet here then this will override the one used in `TMP_Settings`.
