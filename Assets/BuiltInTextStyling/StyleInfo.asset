@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StyleInfo
   m_EditorClassIdentifier: 
   fontSize: 36
-  styleSheet: {fileID: 11400000, guid: bef0e293cd46b12439d7c3fd69828f43, type: 2}
+  styleSheet: {fileID: 11400000, guid: b3e0ea8e954252845bf7da0472c30e7c, type: 2}

@@ -13,17 +13,28 @@ public class SetStyle : MonoBehaviour
         text = GetComponent<TMP_Text>();
     }
 
-    void Update()
-    {
-        ApplyStyle();
-    }
-
-    void ApplyStyle()
+    void OnEnable()
     {
         if (styleInfo != null)
         {
-            text.fontSize = styleInfo.fontSize;
-            text.styleSheet = styleInfo.styleSheet;
+            styleInfo.Subscribe(ApplyStyle);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (styleInfo != null)
+        {
+            styleInfo.Unsubscribe(ApplyStyle);
+        }
+    }
+
+    void ApplyStyle(float fontSize, TMP_StyleSheet styleSheet)
+    {
+        if (styleInfo != null)
+        {
+            text.fontSize = fontSize;
+            text.styleSheet = styleSheet;
         }
     }
 }
