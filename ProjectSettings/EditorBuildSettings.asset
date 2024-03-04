@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TextStyleSheets.unity
+    path: Assets/CustomTextStyling/TextStyleSheets.unity
     guid: bd2b28872ac04954b8262ad09ca10210
   - enabled: 1
-    path: Assets/TestScene.unity
+    path: Assets/CustomTextStyling/TestScene.unity
     guid: bfc39b3ad88e0cb4c81a31c31512a170
   m_configObjects: {}
