@@ -45,8 +45,6 @@ public class SetDefaultFontSize : MonoBehaviour
 
 and attach it to a Text Mesh Pro object, the font size on the object will be linked to the default font size in the TMP Settings. This means that if you change the default font size in the TMP Settings, the font size on the object will change. You could also copy other values from the TMP Settings to the object in the same way.
 
-Note: there is a performance cost associated with using the `Update` function for this, as each instance of this script will update each frame. This is not a problem if you have only a few Text Mesh Pro objects. But, if you have many, this cost will increase linearly with the number of instances. If you don't need to change the font size at runtime, you can put it in the `Start` function instead. This way your cost will only happen when the Text Mesh Pro objects are enabled for the first time in each scene.
-
 ### Default Style Sheet
 
 A `TMP_StyleSheet` defines a list of named styles that you can apply to TextMesh Pro text objects. Each text object can either choose a style from the default style sheet or you can create your own sheet and pick a style from that.
@@ -56,3 +54,22 @@ You can edit each style of a style sheet in the inspector (except for the `Norma
 ![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/b9d6b14a-0769-4cf3-a7c1-e59100fbd9ad)
 
 The tags you can use are documented [here](https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.2/manual/RichTextSupportedTags.html).
+
+When you specify the font size you can do it as a percentage, using em units, in pixels, or relative pixels. In all cases, the original font size is used as the base for the adjustment. In this way you can get the styles to adapt to size changes by using the `SetDefaultFontSize` script above.
+
+Also, by default, each `TextMesh Pro` object will use the `Default Style Sheet` asset assigned in the `TMP_Settings` asset.
+![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/9678e4c8-3c9a-4292-a0b0-fac0fc13f4de)
+
+By making your own style sheet and assigning it here, you can control the style of every `TextMesh Pro` text object in your project.
+
+But, each `TextMesh Pro` text object also has its own setting for the style sheet to use. By default, the entry will be blank when the `TextMesh Pro` text objects are created. You can see the setting by click on the `Extra Settings` button in the `Inspector` view for the `TextMesh Pro` text object:
+![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/09afdd82-5fa5-4936-bb74-7b3c94cf130f)
+
+If you assign a style sheet here then this will override the one used in `TMP_Settings`.
+
+### Making changes at runtime
+
+Unfortunately, neither the `TMP_Settings` asset, nor the `Style Sheet` assets can be modified at runtime. Only the settings on each `TextMesh Pro` text object have write access from the code. So if you want to allow your players to, for example, change the size of your text from a configuration menu in game, you will have to wrtie a script to do that.
+
+A script similar to the `SetDefaultFontSize` script (above) can be used to apply such changes at runtime. However, we will first need our own `ScriptableObject` to store the current font size and style data. The following script can act as such a store:
+
