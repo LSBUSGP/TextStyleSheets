@@ -71,5 +71,56 @@ If you assign a style sheet here then this will override the one used in `TMP_Se
 
 Unfortunately, neither the `TMP_Settings` asset, nor the `Style Sheet` assets can be modified at runtime. Only the settings on each `TextMesh Pro` text object have write access from the code. So if you want to allow your players to, for example, change the size of your text from a configuration menu in game, you will have to wrtie a script to do that.
 
-A script similar to the `SetDefaultFontSize` script (above) can be used to apply such changes at runtime. However, we will first need our own `ScriptableObject` to store the current font size and style data. The following script can act as such a store:
+A script similar to the `SetDefaultFontSize` script (above) can be used to apply such changes at runtime. However, we will first need our own `ScriptableObject` to store the current font size and style data. The following `StyleInfo` script can act as such a store:
 
+```csharp
+using TMPro;
+using UnityEngine;
+
+[CreateAssetMenu]
+public class StyleInfo : ScriptableObject
+{
+    public float fontSize;
+    public TMP_StyleSheet styleSheet;
+}
+```
+
+After creating such a script, create an asset of the type `StyleInfo` and set the font size and style sheet to your own settings.
+
+Then you can apply the font size and style sheet to each text object with this `SetStyle` script:
+
+```csharp
+using UnityEngine;
+using TMPro;
+
+[ExecuteInEditMode]
+[RequireComponent(typeof(TMP_Text))]
+public class SetStyle : MonoBehaviour
+{
+    public StyleInfo styleInfo;
+    public TMP_Text text;
+
+    void Reset()
+    {
+        text = GetComponent<TMP_Text>();
+    }
+
+    void Update()
+    {
+        ApplyStyle();
+    }
+
+    void ApplyStyle()
+    {
+        if (styleInfo != null)
+        {
+            text.fontSize = styleInfo.fontSize;
+            text.styleSheet = styleInfo.styleSheet;
+        }
+    }
+}
+```
+
+Add this script to each `TextMesh Pro` text object and assign the `Style Info` property to point to your newly created asset. Now your text objects should reflect whatever you set in those variables in your style info, and these you **can** change at runtime.
+
+Note: using `Update` to constantly re-apply text style and font changes every frame might have a performance impact if the number text objects gets large. Should that become a problem, it is possible to replace this with callbacks so that these variables are only updated when changes are made.
