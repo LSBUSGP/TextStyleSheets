@@ -4,7 +4,14 @@ This example project contains two ways to globally control text in Unity. Both m
 
 ## Method 1: Using a Text Mesh Pro Style Sheet
 
-When you first add Text Mesh Pro to your project it will create default settings and a default style sheet. The default settings are stored in a file called `TMP_Settings.asset` inside a folder called `Resources` in the `TextMesh Pro` folder. The default style sheet is stored in a file called `Default Style Sheet.asset` inside a sub folder called `Style Sheets`.
+When you first add Text Mesh Pro to your project it will create default settings and a default style sheet.
+
+The default settings are stored in a file called `TMP_Settings.asset` inside a folder called `Resources` in the `TextMesh Pro` folder.
+![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/0240eea0-13fe-46bb-a079-3263455312c3)
+
+The default style sheet is stored in a file called `Default Style Sheet.asset` inside a sub folder called `Style Sheets`.
+![image](https://github.com/LSBUSGP/TextStyleSheets/assets/3679392/d0335cb7-62d8-4ea3-b793-c70e7f36ee52)
+
 
 ### Default Font Size
 
